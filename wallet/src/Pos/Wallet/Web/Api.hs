@@ -43,6 +43,7 @@ module Pos.Wallet.Web.Api
        , UpdateTx
        , GetHistory
 
+       , AllUpdates
        , NextUpdate
        , PostponeUpdate
        , ApplyUpdate
@@ -300,6 +301,11 @@ type GetHistory =
 -- Updates
 -------------------------------------------------------------------------
 
+type AllUpdates =
+       "update"
+    :> "all"
+    :> WRes Get [CUpdateInfo]
+
 type NextUpdate =
        "update"
     :> WRes Get CUpdateInfo
@@ -455,6 +461,8 @@ type WalletApi = ApiPrefix :> (
      -------------------------------------------------------------------------
      -- Updates
      -------------------------------------------------------------------------
+     AllUpdates
+    :<|>
      NextUpdate
     :<|>
      PostponeUpdate
